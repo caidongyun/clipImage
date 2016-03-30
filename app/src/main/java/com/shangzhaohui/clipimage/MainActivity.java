@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BitmapUtil.saveBitmap(mImageview.getBitmap(),MainActivity.this);
+                BitmapSaveTask task = new BitmapSaveTask(mImageview.getBitmap(),MainActivity.this);
+                task.execute();
             }
         });
     }

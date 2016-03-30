@@ -1,6 +1,5 @@
 package com.shangzhaohui.clipimage;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
@@ -16,9 +15,9 @@ public class BitmapUtil {
 
     public static final String SDCARD_DIR = Environment.getExternalStorageDirectory().getAbsolutePath();
     private  static final String FILE_DIR_NAME = "clipimage";
-    public static void  saveBitmap(Bitmap bm,Context context) {
+    public static boolean  saveBitmap(Bitmap bm) {
         if (bm == null) {
-            return;
+            return false;
         }
         File fileDir = new File(SDCARD_DIR +File.separator+ FILE_DIR_NAME) ;
         if (!fileDir.exists()) {
@@ -33,13 +32,15 @@ public class BitmapUtil {
             bm.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
+            return  true;
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return  false;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return false;
         }
-
     }
 }
